@@ -3,7 +3,7 @@
 \docType{data}
 \name{lwqs_data}
 \alias{lwqs_data}
-\title{Simulated dataset for accompanying vignette}
+\title{Simulated dataset for accompanying vignette.}
 \usage{
 data(lwqs_data)
 }
@@ -11,8 +11,8 @@ data(lwqs_data)
 A data frame containing simulated data to explore the \code{lwqs} algorithm. Variables included are as follows:
 \item{ID}{Variable identifying each simulated subject. Data reflect 30 successive measures per subject.}
 \item{Sex}{A simulated binary covariate, either 1 or 0.}
-\item{time}{Variable identifying the successive timing of each repeated measure}
-\item{out}{Simulated outcome on standardized scale}
+\item{time}{Variable identifying the successive timing of each repeated measure.}
+\item{out}{Simulated outcome on standardized scale.}
 \item{pred1}{First simulated time-varying predictor. This has a large positive association with "out" from times 11-20.}
 \item{pred2}{Second simulated time-varying predictor. This has a moderate positive association with "out" from times 11-20.}
 \item{pred3}{Third simulated time-varying predictor. This has a moderate negative association with "out" from times 1-10.}
@@ -20,5 +20,5 @@ A data frame containing simulated data to explore the \code{lwqs} algorithm. Var
 \item{pred5}{Fifth simulated time-varying predictor. This has no significant association with "out".}
 }
 \description{
-Simulated dataset for accompanying vignette
+Simulated dataset for accompanying vignette.
 }

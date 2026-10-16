@@ -9,3 +9,7 @@ import(gamm4)
 import(ggplot2)
 import(gridExtra)
 import(plyr)
+importFrom(stats,
+  predict,
+  qnorm
+)

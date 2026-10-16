@@ -2,31 +2,32 @@
 % Please edit documentation in R/lwqs.R
 \name{extract_mixture}
 \alias{extract_mixture}
-\title{Function to extract time-varying mixture (wqs) index from lWQS object}
+\title{Function to extract time-varying mixture (wqs) index from lWQS object.}
 \usage{
 extract_mixture(lobj)
 }
 \arguments{
-\item{lobj}{An object returned from lWQS function}
+\item{lobj}{An object returned from the lwqs function.}
 }
 \value{
 Data frame containing the time index, wqs index estimated at each repeated measure, subject ID, and the outcome variable.
 }
 \description{
-Function to extract time-varying mixture (wqs) index from lWQS object
+Function to extract time-varying mixture (wqs) index from lWQS object.
 }
 \examples{
-\donttest{
+\dontrun{
 # identify predictor variables used in mixture
 mixvars=names(lwqs_data)[5:9]
 
-# run model. Note for example run-time only 1 bootstrap (b=1) is used. Set b to be >50
+# run model. Note for example run-time only a small number of bootstraps
+# (b=5) is used; set b to be >50 in practice.
 model=lwqs(data=lwqs_data,
            timevar="time",
            wqs_parms=list(formula=out ~ wqs,
               data = lwqs_data,
               mix_name=mixvars,
-              b1_constr = TRUE,
+              b_constr = TRUE,
               b1_pos=FALSE,
               b = 5,
               q = 5,
@@ -38,4 +39,5 @@ model=lwqs(data=lwqs_data,
 
 # use extract_mixture to access time-varying wqs index
 mixtime=extract_mixture(model)}
+
 }

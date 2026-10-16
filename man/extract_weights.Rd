@@ -2,21 +2,21 @@
 % Please edit documentation in R/lwqs.R
 \name{extract_weights}
 \alias{extract_weights}
-\title{Function to extract time-varying weights from lWQS object}
+\title{Function to extract time-varying weights from lWQS object.}
 \usage{
 extract_weights(lobj)
 }
 \arguments{
-\item{lobj}{An object returned from lWQS function}
+\item{lobj}{An object returned from the lwqs function.}
 }
 \value{
-A (long-form) data frame containing the time index and corresponding variable weights estimated in an lWQS
+A (long-form) data frame containing the time index and corresponding variable weights estimated in an lWQS.
 }
 \description{
-Function to extract time-varying weights from lWQS object
+Function to extract time-varying weights from lWQS object.
 }
 \examples{
-\donttest{
+\dontrun{
 # identify predictor variables used in mixture
 mixvars=names(lwqs_data)[5:9]
 
@@ -26,7 +26,7 @@ model=lwqs(data=lwqs_data,
            wqs_parms=list(formula=out ~ wqs,
               data = lwqs_data,
               mix_name=mixvars,
-              b1_constr = TRUE,
+              b_constr = TRUE,
               b1_pos=TRUE,
               b = 5,
               q = 5,
@@ -38,4 +38,5 @@ model=lwqs(data=lwqs_data,
 
 # use extract_weights to access time-varying predictor weights
 timeweights=extract_weights(model)}
+
 }

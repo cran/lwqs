@@ -2,7 +2,7 @@
 % Please edit documentation in R/lwqs.R
 \name{lwqs}
 \alias{lwqs}
-\title{Wrapper function for the implementaion of lagged WQS.}
+\title{Wrapper function for the implementation of lagged WQS.}
 \usage{
 lwqs(
   data,
@@ -10,45 +10,49 @@ lwqs(
   wqs_parms,
   outcome,
   ID,
-  rDLM_parms = list(formula = wqs ~ s(time, by = y, bs = "cr"), random = ~(1 | id))
+  rDLM_parms = list(formula = wqs ~ s(time, by = y, bs = "cr"), random = ~(1 | id)),
+  ci_level = 0.95
 )
 }
 \arguments{
 \item{data}{Data frame containing observations in long format.}
 
-\item{timevar}{Enquoted variable name identifying the repeated measure / time variable}
+\item{timevar}{Enquoted variable name identifying the repeated measure / time variable.}
 
 \item{wqs_parms}{A list containing parameters to be passed to the WQS algorithm. See gWQS package for details.}
 
-\item{outcome}{An enquoted variable name identifying the outcome measure}
+\item{outcome}{An enquoted variable name identifying the outcome measure.}
 
-\item{ID}{An enquoted variable name identifying the subject identifier}
+\item{ID}{An enquoted variable name identifying the subject identifier.}
 
-\item{rDLM_parms}{(optional). A list containing parameters to be passed to the GAM algorithm. See gamm4 package for details. Parameters wqs, time, by, and id (see above) are created by the lwqs function and passed to the gamm4 function automatically.}
+\item{rDLM_parms}{(optional). A list containing parameters to be passed to the GAM algorithm. See gamm4 package for details. Parameters wqs, time, by, and id are created by the lwqs function and passed to the gamm4 function automatically.}
+
+\item{ci_level}{(optional). Confidence level for the time-varying effect band. Defaults to 0.95.}
 }
 \value{
 The \code{lwqs} function returns a list containing final model output and time-specific model parameters.
 
 \item{parameters}{This list contains several objects summarizing different stages of the lagged ensemble model. The first
-object, \code{res}, contains output from the gWQS algorithm applied to  each discreet repeated measure in the
+object, \code{res}, contains output from the gWQS algorithm applied to each discrete repeated measure in the
 overall model; see package gWQS for details. The second output, \code{wqstime}, provides the mixture index,
 identified as "wqs", estimated for each subject at each discrete time point. The third item, \code{weightstime}, provides
 the weights estimated for each predictor at each discrete time point.}
-\item{plot}{This list contains two plots (as grobs) which summarize output of the lwqs algorithm.}
+\item{plot}{A combined plot (as a grob) summarizing the output of the lwqs algorithm.}
 }
 \description{
-Wrapper function for the implementaion of lagged WQS.
+Wrapper function for the implementation of lagged WQS.
 }
 \examples{
-\donttest{ # identify predictor variables used in mixture
+\dontrun{ # identify predictor variables used in mixture
 mixvars=names(lwqs_data)[5:9]
 
+# run model.
 model=lwqs(data=lwqs_data,
            timevar="time",
            wqs_parms=list(formula=out ~ wqs,
               data = lwqs_data,
               mix_name=mixvars,
-              b1_constr = TRUE,
+              b_constr = TRUE,
               b1_pos=TRUE,
               b = 5,
               q = 5,
